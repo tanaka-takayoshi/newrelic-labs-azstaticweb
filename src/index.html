@@ -26,13 +26,13 @@
   <script>
       const btn1 = document.getElementById('button1');
       const btn2 = document.getElementById('button2');
-      const name = document.getElementById('name').value;
       btn1.onclick = async function() {
+        const name = document.getElementById('name').value;
         const text  = await( await fetch(`/api/message?name=`+name)).text();
         document.querySelector('#nameResult').textContent = text;
       }
       btn2.onclick = async function() {
-        const text  = await( await fetch(`/api/XXX?name=`+name)).text();
+        const text  = await( await fetch(`/api/XXX`)).text();
         document.querySelector('#nameResult').textContent = text;
       }
   </script>
