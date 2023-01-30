@@ -43,3 +43,19 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_FOREST_05146EA10 }}
           action: "close"
+          
+  newrelic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create New Relic deployment marker
+        uses: newrelic/deployment-marker-action@v2-beta
+        with:
+          apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
+          guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
+          version: "${{ github.ref }}-${{ github.sha }}"
+
+          # Optional
+          changelog: "See https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md for details"
+          description: "Automated Deployment via Github Actions"
+          region: ${{ secrets.NEW_RELIC_REGION }}
+          user: "${{ github.actor }}"
